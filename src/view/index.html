@@ -4,19 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles/index.css" />
+    <script type="module" src="index.js"></script>
     <title>Spotify architecture</title>
 </head>
 <body>
     <header>
         <h1>Spotify</h1>
-        <button class="action-button" onclick="openModal()">Crear usuario</button>
+        <div>
+            <button class="btn btn-secondary" id="select-user-btn">Select user</button>
+            <button class="btn btn-main" id="create-user-btn">Create user</button>
+        </div>
     </header>
     <div class="main-container">
         <aside class="sidebar">
             <div class="user-profile">
                 <img src="https://via.placeholder.com/50" alt="Usuario">
                 <span id="userNameDisplay">Nombre del Usuario</span>
-                <button class="action-button" onclick="openUserSelectionModal()">Seleccionar usuario</button>
             </div>
             <ul class="playlists">
                 <li>Playlist 1</li>
@@ -36,86 +39,74 @@
             </ul>
         </main>
     </div>
-    <div class="modal" id="userModal">
+
+    <!-- Modal to create a user -->
+    <div class="modal" id="create-user-modal">
         <div class="modal-content">
-            <h2>Crear Usuario</h2>
-            <input type="text" placeholder="Nombre de usuario" id="usernameInput">
-            <button class="action-button" onclick="createUser()">Crear</button>
-            <button class="action-button" onclick="closeModal()">Cerrar</button>
+            <h2>Create user</h2>
+            <input type="text" placeholder="User name" class="input" id="username-input">
+            <button class="btn btn-main" id="save-user-btn">Save</button>
+            <button class="btn btn-secondary" id="close-create-user-modal"">Close</button>
         </div>
     </div>
-    <div class="modal" id="userSelectionModal">
+
+    <!-- Modal to select a user -->
+    <div class="modal" id="select-user-modal">
         <div class="modal-content">
-            <h2>Seleccionar Usuario</h2>
+            <h2>Select user</h2>
             <ul id="userList"></ul>
-            <button class="action-button" onclick="closeUserSelectionModal()">Cerrar</button>
+            <button class="btn btn-secondary" id="close-select-user-modal">Close</button>
         </div>
     </div>
+
     <script>
-        let selectedUser = null;
+        // let selectedUser = null;
 
-        function openModal() {
-            document.getElementById("userModal").style.display = "flex";
-        }
+        // // async function createUser() {
+        // //     const username = document.querySelector('#usernameInput').value;
+        // //     if (!username) return;
 
-        function closeModal() {
-            document.getElementById("userModal").style.display = "none";
-        }
+        // //     try {
+        // //         const response = await fetch('/users', {
+        // //             method: 'POST',
+        // //             headers: {
+        // //                 'Content-Type': 'application/json'
+        // //             },
+        // //             body: JSON.stringify({ username })
+        // //         });
 
-        function openUserSelectionModal() {
-            document.getElementById("userSelectionModal").style.display = "flex";
-            loadUsers();
-        }
+        // //         if (response.ok) {
+        // //             closeModal();
+        // //             loadUsers();
+        // //         }
+        // //     } catch (error) {
+        // //         console.error('Error creating user:', error);
+        // //     }
+        // // }
 
-        function closeUserSelectionModal() {
-            document.getElementById("userSelectionModal").style.display = "none";
-        }
+        // async function loadUsers() {
+        //     try {
+        //         const response = await fetch('/users');
+        //         const users = await response.json();
 
-        async function createUser() {
-            const username = document.querySelector('#usernameInput').value;
-            if (!username) return;
+        //         const userList = document.getElementById('userList');
+        //         userList.innerHTML = users.map(user => `
+        //             <li onclick="selectUser('${user}')" class="${selectedUser === user ? 'selected' : ''}">
+        //                 ${user}
+        //             </li>
+        //         `).join('');
+        //     } catch (error) {
+        //         console.error('Error loading users:', error);
+        //     }
+        // }
 
-            try {
-                const response = await fetch('/users', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ username })
-                });
+        // function selectUser(username) {
+        //     selectedUser = username;
+        //     document.getElementById("userNameDisplay").innerText = username;
+        //     closeUserSelectionModal();
+        // }
 
-                if (response.ok) {
-                    closeModal();
-                    loadUsers();
-                }
-            } catch (error) {
-                console.error('Error creating user:', error);
-            }
-        }
-
-        async function loadUsers() {
-            try {
-                const response = await fetch('/users');
-                const users = await response.json();
-
-                const userList = document.getElementById('userList');
-                userList.innerHTML = users.map(user => `
-                    <li onclick="selectUser('${user}')" class="${selectedUser === user ? 'selected' : ''}">
-                        ${user}
-                    </li>
-                `).join('');
-            } catch (error) {
-                console.error('Error loading users:', error);
-            }
-        }
-
-        function selectUser(username) {
-            selectedUser = username;
-            document.getElementById("userNameDisplay").innerText = username;
-            closeUserSelectionModal();
-        }
-
-        document.addEventListener('DOMContentLoaded', loadUsers);
+        // document.addEventListener('DOMContentLoaded', loadUsers);
     </script>
 </body>
 </html>
