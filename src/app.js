@@ -1,12 +1,12 @@
-import express, { Express, Request } from 'express';
+import express from 'express';
 import cors from 'cors';
 
-const app: Express = express();
+const app = express();
 
-let users: string[] = [];
+let users = [];
 
 app.set('port', 4000);
-app.use(cors<Request>());
+app.use(cors());
 app.use(express.static('./src/view'));
 app.use(express.json());
 
