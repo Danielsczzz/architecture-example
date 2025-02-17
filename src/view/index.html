@@ -5,18 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles/index.css" />
     <title>Spotify architecture</title>
-    
 </head>
 <body>
     <header>
         <h1>Spotify</h1>
-        <button onclick="openModal()">Create user</button>
+        <button class="action-button" onclick="openModal()">Crear usuario</button>
     </header>
     <div class="main-container">
         <aside class="sidebar">
             <div class="user-profile">
                 <img src="https://via.placeholder.com/50" alt="Usuario">
-                <span>Nombre del Usuario</span>
+                <span id="userNameDisplay">Nombre del Usuario</span>
+                <button class="action-button" onclick="openUserSelectionModal()">Seleccionar usuario</button>
             </div>
             <ul class="playlists">
                 <li>Playlist 1</li>
@@ -39,17 +39,83 @@
     <div class="modal" id="userModal">
         <div class="modal-content">
             <h2>Crear Usuario</h2>
-            <input type="text" placeholder="Nombre de usuario">
-            <button onclick="closeModal()">Cerrar</button>
+            <input type="text" placeholder="Nombre de usuario" id="usernameInput">
+            <button class="action-button" onclick="createUser()">Crear</button>
+            <button class="action-button" onclick="closeModal()">Cerrar</button>
+        </div>
+    </div>
+    <div class="modal" id="userSelectionModal">
+        <div class="modal-content">
+            <h2>Seleccionar Usuario</h2>
+            <ul id="userList"></ul>
+            <button class="action-button" onclick="closeUserSelectionModal()">Cerrar</button>
         </div>
     </div>
     <script>
+        let selectedUser = null;
+
         function openModal() {
             document.getElementById("userModal").style.display = "flex";
         }
+
         function closeModal() {
             document.getElementById("userModal").style.display = "none";
         }
+
+        function openUserSelectionModal() {
+            document.getElementById("userSelectionModal").style.display = "flex";
+            loadUsers();
+        }
+
+        function closeUserSelectionModal() {
+            document.getElementById("userSelectionModal").style.display = "none";
+        }
+
+        async function createUser() {
+            const username = document.querySelector('#usernameInput').value;
+            if (!username) return;
+
+            try {
+                const response = await fetch('/users', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ username })
+                });
+
+                if (response.ok) {
+                    closeModal();
+                    loadUsers();
+                }
+            } catch (error) {
+                console.error('Error creating user:', error);
+            }
+        }
+
+        async function loadUsers() {
+            try {
+                const response = await fetch('/users');
+                const users = await response.json();
+
+                const userList = document.getElementById('userList');
+                userList.innerHTML = users.map(user => `
+                    <li onclick="selectUser('${user}')" class="${selectedUser === user ? 'selected' : ''}">
+                        ${user}
+                    </li>
+                `).join('');
+            } catch (error) {
+                console.error('Error loading users:', error);
+            }
+        }
+
+        function selectUser(username) {
+            selectedUser = username;
+            document.getElementById("userNameDisplay").innerText = username;
+            closeUserSelectionModal();
+        }
+
+        document.addEventListener('DOMContentLoaded', loadUsers);
     </script>
 </body>
 </html>
