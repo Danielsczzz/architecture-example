@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/index.css" />
+    <title>Spotify architecture</title>
+    
+</head>
+<body>
+    <header>
+        <h1>Spotify</h1>
+        <button onclick="openModal()">Create user</button>
+    </header>
+    <div class="main-container">
+        <aside class="sidebar">
+            <div class="user-profile">
+                <img src="https://via.placeholder.com/50" alt="Usuario">
+                <span>Nombre del Usuario</span>
+            </div>
+            <ul class="playlists">
+                <li>Playlist 1</li>
+                <li>Playlist 2</li>
+                <li>Playlist 3</li>
+            </ul>
+        </aside>
+        <main class="content">
+            <div class="playlist-header">
+                <img src="https://via.placeholder.com/100" alt="Playlist Cover">
+                <h1>Nombre de la Playlist</h1>
+            </div>
+            <ul class="songs">
+                <li>Canción 1</li>
+                <li>Canción 2</li>
+                <li>Canción 3</li>
+            </ul>
+        </main>
+    </div>
+    <div class="modal" id="userModal">
+        <div class="modal-content">
+            <h2>Crear Usuario</h2>
+            <input type="text" placeholder="Nombre de usuario">
+            <button onclick="closeModal()">Cerrar</button>
+        </div>
+    </div>
+    <script>
+        function openModal() {
+            document.getElementById("userModal").style.display = "flex";
+        }
+        function closeModal() {
+            document.getElementById("userModal").style.display = "none";
+        }
+    </script>
+</body>
+</html>
