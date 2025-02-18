@@ -2,11 +2,30 @@
 const openCreateUserModalBtn = document.getElementById('create-user-btn') 
 const openSelectUserModalBtn = document.getElementById('select-user-btn')
 
-const handleSelectUserModal = () => {
+const handleSelectUserModal = async () => {
   const modal = document.getElementById('select-user-modal')
+  await showUsersList()
   openModal(modal)
-
   document.getElementById('close-select-user-modal').addEventListener('click', () => closeModal(modal))
+}
+
+const showUsersList = async () => {
+  const usersList = document.getElementById('users-list')
+  usersList.replaceChildren()
+  const users = await getUsers()
+  users.map(item => {
+    const listItem = document.createElement("li")
+    listItem.innerText = item.username
+    usersList.appendChild(listItem)
+  })
+}
+
+const getUsers = async () => {
+  const response = await fetch('http://localhost:4000/users', {
+    method: 'GET',
+  })
+  const data = await response.json()
+  return data
 }
 
 const handleCreateUserModal = async () => {
