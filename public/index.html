@@ -21,11 +21,8 @@
                 <img src="https://via.placeholder.com/50" alt="Usuario">
                 <span id="userNameDisplay">Nombre del Usuario</span>
             </div>
-            <ul class="playlists">
-                <li>Playlist 1</li>
-                <li>Playlist 2</li>
-                <li>Playlist 3</li>
-            </ul>
+            <button class="btn btn-main" id="create-playlist-btn">Create playlists</button>
+            <ul class="playlists" id="playlists-list"></ul>
         </aside>
         <main class="content">
             <div class="playlist-header">
@@ -58,5 +55,16 @@
             <button class="btn btn-secondary" id="close-select-user-modal">Close</button>
         </div>
     </div>
+
+    <!-- Modal to create a playlist -->
+    <div class="modal" id="create-playlist-modal">
+        <div class="modal-content">
+            <h2>Create playlist</h2>
+            <input type="text" placeholder="Playlist name" class="input" id="playlist-input">
+            <button class="btn btn-main" id="save-playlist-btn">Save</button>
+            <button class="btn btn-secondary" id="close-create-playlist-modal"">Close</button>
+        </div>
+    </div>
+
 </body>
 </html>
