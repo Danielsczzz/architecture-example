@@ -6,7 +6,7 @@ const app = express();
 
 app.set('port', 4000);
 app.use(cors());
-app.use(express.static('./src/view'));
+app.use(express.static('./public'));
 app.use(express.json());
 
 app.use('/users', userRoutes)
