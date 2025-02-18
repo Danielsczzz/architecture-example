@@ -2,7 +2,6 @@ import express from 'express';
 import cors from 'cors';
 import userRoutes from './routes/user.routes.js';
 
-let users = [];
 const app = express();
 
 app.set('port', 4000);

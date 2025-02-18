@@ -58,55 +58,5 @@
             <button class="btn btn-secondary" id="close-select-user-modal">Close</button>
         </div>
     </div>
-
-    <script>
-        // let selectedUser = null;
-
-        // // async function createUser() {
-        // //     const username = document.querySelector('#usernameInput').value;
-        // //     if (!username) return;
-
-        // //     try {
-        // //         const response = await fetch('/users', {
-        // //             method: 'POST',
-        // //             headers: {
-        // //                 'Content-Type': 'application/json'
-        // //             },
-        // //             body: JSON.stringify({ username })
-        // //         });
-
-        // //         if (response.ok) {
-        // //             closeModal();
-        // //             loadUsers();
-        // //         }
-        // //     } catch (error) {
-        // //         console.error('Error creating user:', error);
-        // //     }
-        // // }
-
-        // async function loadUsers() {
-        //     try {
-        //         const response = await fetch('/users');
-        //         const users = await response.json();
-
-        //         const userList = document.getElementById('userList');
-        //         userList.innerHTML = users.map(user => `
-        //             <li onclick="selectUser('${user}')" class="${selectedUser === user ? 'selected' : ''}">
-        //                 ${user}
-        //             </li>
-        //         `).join('');
-        //     } catch (error) {
-        //         console.error('Error loading users:', error);
-        //     }
-        // }
-
-        // function selectUser(username) {
-        //     selectedUser = username;
-        //     document.getElementById("userNameDisplay").innerText = username;
-        //     closeUserSelectionModal();
-        // }
-
-        // document.addEventListener('DOMContentLoaded', loadUsers);
-    </script>
 </body>
 </html>
