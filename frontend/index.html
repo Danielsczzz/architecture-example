@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netflix Clone</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header class="topNav">
+        <img class="nav__logo" src="assets/Netflix-Symbol.png" alt="Netflix Logo">
+    </header>
+    
+    <section class="banner">
+        <div class="banner__contents">
+            <h1 class="banner__title">Película Destacada</h1>
+            <p class="banner__description">Descripción breve de la película destacada.</p>
+            <button class="banner__button">Reproducir</button>
+            <button class="banner__button">Más información</button>
+        </div>
+        <div class="banner--fadeBottom"></div>
+    </section>
+    
+    <section class="list">
+        <h2 class="title">Películas Populares</h2>
+        <div class="row__posters" id="movies-list">
+            <!-- Aquí se cargarán dinámicamente las películas -->
+        </div>
+    </section>
+    
+    <script src="js/scripts.js"></script>
+</body>
+</html>

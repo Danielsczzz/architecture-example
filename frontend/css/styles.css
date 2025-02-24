@@ -1,0 +1,95 @@
+/* Fondo general */
+body {
+    background-color: black;
+    color: white;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+/* Logo superior */
+.nav__logo {
+    width: 100px;
+    margin: 20px 0;
+}
+
+/* Banner */
+.banner {
+    width: 100%;
+    height: 50vh;
+    background: url('../assets/BrandAssets_Logos_01-Wordmark.jpg') center/cover no-repeat;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+/* Contenido dentro del banner */
+.banner__contents {
+    background: rgba(0, 0, 0, 0.7); /* Fondo oscuro para mejor legibilidad */
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 600px;
+}
+
+.banner__title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.banner__description {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+}
+
+/* Botones */
+.banner__buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.banner__button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: red;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.banner__button:hover {
+    background-color: darkred;
+}
+
+/* Sección de películas populares */
+.list {
+    width: 80%;
+    margin-top: 20px;
+}
+
+.row__posters {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.row__poster {
+    width: 120px;
+    height: 180px;
+    object-fit: cover;
+    transition: transform 0.3s;
+}
+
+.row__poster:hover {
+    transform: scale(1.1);
+}
